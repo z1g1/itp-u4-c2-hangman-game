@@ -9,9 +9,11 @@ def _get_random_word(list_of_words):
 
 
 def _mask_word(word):
-    pass
-
-
+	if word:
+		masked_word = len(word)*'*'
+		return masked_word 
+	else:
+		raise(InvalidWordException)
 def _uncover_word(answer_word, masked_word, character):
     pass
 
