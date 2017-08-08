@@ -14,9 +14,32 @@ def _mask_word(word):
 		return masked_word 
 	else:
 		raise(InvalidWordException)
-def _uncover_word(answer_word, masked_word, character):
-    pass
 
+def _uncover_word(answer_word, masked_word, character):
+	
+	# make sure that the words aren't empty
+	if (len(answer_word) < 1) or (len(masked_word) < 1):
+		raise(InvalidWordException)
+	# make sure that they are only guessing 1 letter in character
+	if len(character) > 1:
+		raise(InvalidGuessedLetterException)
+	# make sure that the answer_word length is equal to length masked_word
+	if len(answer_word) != len(masked_word):
+		raise(InvalidWordException) 
+
+
+	# check to see if character is in the answer
+	# if it is replace it's position with * 
+	
+	new_string = ''
+	for index, letter in enumerate(answer_word):
+		if character.lower() == letter.lower():
+			new_string += character.lower()
+		elif masked_word[index].lower() == letter.lower():
+			new_string += masked_word[index].lower()
+		else:
+			new_string += '*'
+	return new_string
 
 def guess_letter(game, letter):
     pass
