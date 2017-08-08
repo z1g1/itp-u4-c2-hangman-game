@@ -1,11 +1,19 @@
 from .exceptions import *
+import random 
 
 # Complete with your own, just for fun :)
 LIST_OF_WORDS = []
 
 
 def _get_random_word(list_of_words):
-    pass
+	if len(list_of_words) == 0:
+		raise(InvalidListOfWordsException)
+	elif len(list_of_words) == 1:
+		word = list_of_words[0]
+	else:
+		selection = random.randrange(0,len(list_of_words))	
+		word = list_of_words[selection]
+	return word 
 
 
 def _mask_word(word):
