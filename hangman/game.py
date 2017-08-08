@@ -50,9 +50,10 @@ def _uncover_word(answer_word, masked_word, character):
 	return new_string
 
 def guess_letter(game, letter):
-    pass
-
-
+	game['masked_word'] = _uncover_word(game['answer_word'], game['masked_word'], letter)
+	game['previous_guesses'] += letter	
+	return game
+ 
 def start_new_game(list_of_words=None, number_of_guesses=5):
     if list_of_words is None:
         list_of_words = LIST_OF_WORDS
