@@ -53,12 +53,15 @@ def guess_letter(game, letter):
 	original_mask = game['masked_word']
 	game['masked_word'] = _uncover_word(game['answer_word'], game['masked_word'], letter)
 	game['previous_guesses'] += letter.lower()	
+	if game['answer_word'] == game['masked_word']:
+		print(game['answer_word']) 
+		print(game['masked_word'])
+		print('We are here')
+		raise(GameWonException)
 	if original_mask == game['masked_word']:
 		game['remaining_misses'] -= 1
 	if game['remaining_misses'] <= 0:
 		raise(GameLostException)
-	if game['answer_word'] == game['masked_word']:
-		raise(GameWonException)
 	return game
  
 def start_new_game(list_of_words=None, number_of_guesses=5):
@@ -67,6 +70,7 @@ def start_new_game(list_of_words=None, number_of_guesses=5):
 
     word_to_guess = _get_random_word(list_of_words)
     masked_word = _mask_word(word_to_guess)
+	
     game = {
         'answer_word': word_to_guess,
         'masked_word': masked_word,
